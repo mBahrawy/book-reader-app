@@ -1,25 +1,45 @@
+// const prodRootUrl = "http://localhost:8080";
 const prodRootUrl = "https://ahmediznagwa.github.io/New-Hindawi-Reader";
 
 class DataProvider {
-    bookId: string;
-    chapters: string[];
+    id: string;
+    chaptersNames: string[];
     bookNav: string[];
     chaptersContent!: (Element | null)[];
 
-    constructor(bookId: string) {
-        this.bookId = bookId;
-        this.chapters = [];
+    constructor(id: string) {
+        this.id = id;
+        this.chaptersNames = [];
         this.bookNav = [];
     }
 
+    private async _getNavigation(): Promise<string | null> {
+        try {
+            const res = await fetch(`${prodRootUrl}/packages/${this.id}/Navigation/nav.xhtml`);
+            return await res.text();
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
+
+    private async _getHTMLDocument(name: string): Promise<string | null> {
+        try {
+            const res = await fetch(`${prodRootUrl}/packages/${this.id}/Content/${name}`);
+            return await res.text();
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
+
     async createBookNavigationlist(): Promise<string[]> {
-        const res = await fetch(`${prodRootUrl}/packages/${this.bookId}/Navigation/nav.xhtml`);
-        const htmlTxt = await res.text();
+        const navAsText = await this._getNavigation();
         const parser: DOMParser = new DOMParser();
-        const html: Document = parser.parseFromString(htmlTxt, "text/html");
+        const navAsHTML: Document = parser.parseFromString(navAsText, "text/html");
         const nav: string[] = [];
 
-        const anchorList = html.querySelector("ol")?.querySelectorAll("a");
+        const anchorList = navAsHTML.querySelector("ol")?.querySelectorAll("a");
         if (!anchorList) return [];
 
         anchorList.forEach((item: HTMLAnchorElement) => {
@@ -29,24 +49,14 @@ class DataProvider {
         return nav;
     }
 
-    async getHTMLDocument(name: string): Promise<string | null> {
-        try {
-            const res = await fetch(`${prodRootUrl}/packages/${this.bookId}/Content/${name}`);
-            return await res.text();
-        } catch (e) {
-            console.log(e);
-            return null;
-        }
-    }
-
-    async extractChapters(): Promise<(Element | null)[]> {
+    async getHTMLChapters(): Promise<(Element | null)[]> {
         const navList = await this.createBookNavigationlist();
         this.bookNav = navList;
 
         const chapterDataPromises: Promise<string | null>[] = [];
 
         this.bookNav.forEach(async (name) => {
-            chapterDataPromises.push(this.getHTMLDocument(name));
+            chapterDataPromises.push(this._getHTMLDocument(name));
         });
 
         const chaptersRowData: (string | null)[] = await Promise.all([...chapterDataPromises]);

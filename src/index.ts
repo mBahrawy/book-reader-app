@@ -1,17 +1,4 @@
-import DataProvider from "./services/data-provider";
+import Main from "./core/main";
 
-class Controller {
-    htmlExtractor!: DataProvider;
-    // constructor() {}
-
-    async initWithBookId(bookId: string) {
-        this.htmlExtractor = new DataProvider(bookId);
-        console.log(await this.htmlExtractor.extractChapters());
-
-        //   this.detectUserPreferences(bookId)
-        //   this.setupHandlers()
-        //   this.setupEventListeners()
-    }
-}
-const controller: Controller = new Controller();
-controller.initWithBookId("26dd5f00-0c75-4367-adea-537ece731385");
+const main: Main = new Main();
+main.initBook("26dd5f00-0c75-4367-adea-537ece731385");
