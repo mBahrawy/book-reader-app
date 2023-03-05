@@ -1,1 +1,40 @@
-// Here your general css
+html {
+  font-size: 20px;
+  height: 100%;
+}
+
+#app-root {
+  height: calc(100vh + -6rem);
+  padding: 3rem 0;
+  overflow-x: auto;
+  display: flex;
+
+  #book {
+    overflow-x: auto;
+    overflow-y: hidden;
+    column-width: calc(45vw - 2rem);
+    padding: 0 40px;
+    column-gap: 3rem;
+    direction: rtl;
+    height: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+  }
+}
+
+.panel {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background-color: #ddd;
+  border-top: 1px solid #000;
+  backdrop-filter: blur(0.5rem);
+  padding: 0.5rem 2rem;
+  bottom: 0;
+  display: flex;
+  column-gap: 20px;
+
+  &__navigation {
+    button {}
+  }
+}

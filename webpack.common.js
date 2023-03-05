@@ -21,17 +21,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "ts-loader",
-                    options: {
-                        // disable type checker - we will use it in fork plugin
-                        transpileOnly: true
-                    }
-                }
-            },
-            {
                 test: /\.(scss|css)$/,
                 use: [
                     process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -47,7 +36,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".ts"]
     },
     plugins: [
         new MiniCssExtractPlugin({
