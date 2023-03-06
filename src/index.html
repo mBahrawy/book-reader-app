@@ -8,6 +8,8 @@
   <title>Reader</title>
   <link rel="stylesheet" href="./assets/css/app.css" />
   <link rel="stylesheet" href="./assets/css/epub.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+
 </head>
 
 <body>
@@ -15,10 +17,13 @@
     <div id="book"></div>
     <div class="panel">
       <div class="panel__navigation">
-        <button id="next-page-btn">&LT; </button>
-        <button id="previous-page-btn">&GT;</button>
+        <button id="next-bulk-page-btn"><i class="fa-solid fa-angles-left"></i></button>
+        <button id="next-page-btn"><i class="fa-solid fa-angle-left"></i></button>
+        <small id="navigation-feedback"></small>
+
+        <button id="previous-page-btn"><i class="fa-solid fa-angle-right"></i></button>
+        <button id="previous-bulk-page-btn"><i class="fa-solid fa-angles-right"></i></button>
       </div>
-      <small id="navigation-feedback"></small>
     </div>
   </div>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->

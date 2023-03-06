@@ -3,6 +3,8 @@ import Navigation from "./navigation";
 class UserActions {
     nextPageButton: HTMLElement = document.getElementById("next-page-btn");
     previousPageButton: HTMLElement = document.getElementById("previous-page-btn");
+    nextBulkPageButton: HTMLElement = document.getElementById("next-bulk-page-btn");
+    previousBulkPageButton: HTMLElement = document.getElementById("previous-bulk-page-btn");
 
     addEventListerns() {
         // Global events
@@ -15,10 +17,16 @@ class UserActions {
 
         // Buttons
         this.nextPageButton.addEventListener("click", function () {
-            Navigation.nextPage();
+            Navigation.next();
         });
         this.previousPageButton.addEventListener("click", function () {
-            Navigation.previousPage();
+            Navigation.previous();
+        });
+        this.nextBulkPageButton.addEventListener("click", function () {
+            Navigation.next(10);
+        });
+        this.previousBulkPageButton.addEventListener("click", function () {
+            Navigation.previous(10);
         });
     }
 }

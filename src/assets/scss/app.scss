@@ -10,7 +10,7 @@ html {
   display: flex;
 
   #book {
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     column-width: calc(45vw - 2rem);
     padding: 0 40px;
@@ -26,15 +26,39 @@ html {
   position: fixed;
   left: 0;
   width: 100%;
-  background-color: #ddd;
-  border-top: 1px solid #000;
-  backdrop-filter: blur(0.5rem);
-  padding: 0.5rem 2rem;
+  background-color: rgb(245, 245, 245);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 14px 24px;
   bottom: 0;
   display: flex;
   column-gap: 20px;
+  box-sizing: border-box;
 
   &__navigation {
-    button {}
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 5px;
+
+    button {
+      background-color: transparent;
+      border: 0.5px solid #a6a5b2;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+    }
+
+    #navigation-feedback {
+      margin: 0 20px;
+    }
   }
 }
