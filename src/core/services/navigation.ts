@@ -5,6 +5,7 @@ class Navigation {
     static pagesCount: number;
     static book: HTMLElement = document.getElementById("book");
     static navigationFeedbackText: HTMLElement = document.getElementById("navigation-feedback");
+    static navigationProgressBar: HTMLElement = document.getElementById("navigation-progress-bar");
 
     static isNextEnabled(number = 1): boolean {
         return this.currentPageIndex + 1 < this.getPagesCount() - number + 1;
@@ -47,7 +48,12 @@ class Navigation {
         (previousPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled();
         (previousBulkPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled(10);
 
+        // Apply this asyncronsly
         setTimeout(() => {
+            // Update progress bar
+            this.navigationProgressBar.style.width = `${(this.getCurrentPage() / this.pagesCount) * 100}%`;
+
+            // Update navigation info
             this.navigationFeedbackText.innerHTML = `${this.getCurrentPage()} / ${this.getPagesCount()}`;
         }, 0);
     }
