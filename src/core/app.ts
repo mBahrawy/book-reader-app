@@ -21,6 +21,9 @@ class App {
         const htmlChapters = await this.data.getHTMLChapters();
         HandleLayout.appendChaptersToBody(htmlChapters);
 
+        // Update images url
+        Layout.updateImagesUrl(document.querySelectorAll("#book img"));
+
         // Prepare actions panel
         Layout.setActivePanelState(this.bookSettings.isPanelOpened);
 

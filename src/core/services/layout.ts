@@ -5,6 +5,16 @@ import { bookSettings } from "../../index";
 class Layout {
     static isActivePanel = true;
 
+    static updateImagesUrl(imagesList: NodeListOf<Element>): void {
+        const replaceUrl = (old: string): string => {
+            return old.replaceAll("/Images/", `/packages/${bookSettings.bookId}/Images/`);
+        };
+
+        imagesList.forEach((img) => {
+            img.setAttribute("src", replaceUrl(img.getAttribute("src")));
+        });
+    }
+
     static appendChaptersToBody(elements: Element[]): void {
         BookElements.book.innerHTML = "";
         elements.forEach((el) => {

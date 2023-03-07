@@ -21,6 +21,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+                type: "asset"
+            },
+            {
                 test: /\.m?ts$|\.tsx?$/,
                 // exclude: /node_modules/,
                 use: {
@@ -61,7 +65,10 @@ module.exports = {
         }),
         new ForkTsCheckerWebpackPlugin(),
         new CopyPlugin({
-            patterns: [{ from: "src/assets", to: "assets" }]
+            patterns: [
+                { from: "src/assets", to: "assets" },
+                { from: "src/packages", to: "packages" }
+            ]
         }),
         new ESLintPlugin({
             extensions: [".tsx", ".ts", ".js"],

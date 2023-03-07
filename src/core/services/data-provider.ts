@@ -65,11 +65,11 @@ class DataProvider {
             if (!chapter) return null;
             const parser: DOMParser = new DOMParser();
             const htmlDoc: Document = parser.parseFromString(chapter, "text/html");
-            const bodyEl: HTMLBodyElement | null = htmlDoc.querySelector("body");
+            const body: HTMLBodyElement | null = htmlDoc.querySelector("body");
 
-            if (!bodyEl || !bodyEl.firstElementChild) return null;
+            if (!body || !body.firstElementChild) return null;
 
-            return bodyEl.firstElementChild;
+            return body.firstElementChild;
         });
 
         return chaptersHTMLElements;
