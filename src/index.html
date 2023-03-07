@@ -60,7 +60,7 @@
             <!-- Font control -->
             <div class="row">
               <h5>Font</h5>
-              <button class="toggle-fonts-list">
+              <button class="open-fonts-list">
                 <span>Noto Naskh Arabic</span><i class="fa-solid fa-angle-right"></i>
               </button>
             </div>
@@ -68,19 +68,23 @@
 
             <!-- Font list -->
             <div class="fonts-list">
-              <button class="toggle-fonts-list">
+              <button class="close-fonts-list">
                 <i class="fa-solid fa-angle-left"></i>
                 Back
               </button>
-              <button class="font-btn selected" data-value="Noto Naskh Arabic">
-                Noto Naskh Arabic
-              </button>
-              <button class="font-btn" data-value="Tahoma">
-                Tahoma
-              </button>
-              <button class="font-btn" data-value="Arial">
-                Arial
-              </button>
+              <ul>
+                <li><button class="font-btn selected" data-value="Noto Naskh Arabic">
+                    <span>Noto Naskh Arabic</span> <i class="fa-sharp fa-solid fa-check"></i>
+                  </button></li>
+
+                <li> <button class="font-btn" data-value="Tahoma">
+                    <span>Tahoma</span> <i class="fa-sharp fa-solid fa-check"></i>
+                  </button></li>
+
+                <li> <button class="font-btn" data-value="Arial">
+                    <span>Arial</span> <i class="fa-sharp fa-solid fa-check"></i>
+                  </button></li>
+              </ul>
             </div>
           </div>
         </div>

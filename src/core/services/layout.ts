@@ -63,6 +63,7 @@ class Layout {
         const { panel, controlsPopup } = BookElements;
         this.isActivePanel ? panel.classList.remove("opened") : panel.classList.add("opened");
         this.isActivePanel && controlsPopup.classList.remove("opened");
+        this.isActivePanel && this.closeFontsList();
         this.isActivePanel = !this.isActivePanel;
     }
 
@@ -112,36 +113,26 @@ class Layout {
         const { book, fontButtons } = BookElements;
         book.setAttribute("class", "");
         book.classList.add(newFont.replaceAll(" ", "-"));
-        console.log(newFont);
-
         fontButtons.forEach((button) => {
             const fontValue: Font = button.getAttribute("data-value") as Font;
             newFont === fontValue ? button.classList.add("selected") : button.classList.remove("selected");
             newFont === fontValue && this._updateFontFeedback(newFont);
         });
+        Navigation.updateNavigation();
     }
 
-    static toggleFontList(): void {
+    static openFontsList(): void {
         const { fontsList } = BookElements;
+        this.fontsListOriginalParentHeight = fontsList.parentElement.offsetHeight;
+        fontsList.parentElement.style.height = `${this.fontsListOriginalParentHeight}px`;
+        fontsList.parentElement.style.height = `${fontsList.offsetHeight}px`;
+        fontsList.classList.add("slide-up");
+    }
 
-        if (fontsList.classList.contains("slide-up")) {
-            this.fontsListOriginalParentHeight = fontsList.parentElement.offsetHeight;
-            fontsList.classList.remove("slide-up");
-            fontsList.style.display = "block";
-            setTimeout(() => {
-                fontsList.parentElement.style.height = `${fontsList.offsetHeight}px`;
-                fontsList.style.transform = "translateY(0)";
-            }, 10);
-        } else {
-            fontsList.style.transform = "translateY(100%)";
-            fontsList.parentElement.style.height = `${this.fontsListOriginalParentHeight}px`;
-            setTimeout(() => {
-                fontsList.style.display = "none";
-                fontsList.classList.add("slide-up");
-            }, 500);
-        }
-
-        this.isActiveFontsList = !this.isActiveFontsList;
+    static closeFontsList(): void {
+        const { fontsList } = BookElements;
+        fontsList.parentElement.style.height = `${this.fontsListOriginalParentHeight}px`;
+        fontsList.classList.remove("slide-up");
     }
 }
 
