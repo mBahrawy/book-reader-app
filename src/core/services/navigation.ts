@@ -1,6 +1,8 @@
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
 class Navigation {
+    private constructor() {}
+
     static currentPageIndex = 0;
     static pagesCount: number;
 

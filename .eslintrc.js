@@ -7,6 +7,7 @@ module.exports = {
         "prettier"
     ],
     parserOptions: {
+        requireConfigFile: false,
         ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
         sourceType: "module", // Allows for the use of imports
         ecmaFeatures: {
@@ -24,7 +25,8 @@ module.exports = {
         "max-len": [1, { code: 140, ignoreComments: true }],
         "@typescript-eslint/no-explicit-any": 1,
         "no-var": 2,
-        "eslint-disable-next-line prettier/prettier": 0
+        "eslint-disable-next-line prettier/prettier": 0,
+        "@typescript-eslint/no-empty-function": 0
     },
     settings: {
         react: {

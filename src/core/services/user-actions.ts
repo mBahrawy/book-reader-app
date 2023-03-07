@@ -5,13 +5,15 @@ import { debounce } from "../helpers/debounce";
 import Layout from "./layout";
 
 class UserActions {
-    preventScroll(e: Event) {
+    private constructor() {}
+
+    static preventScroll(e: Event) {
         e.preventDefault();
         e.stopPropagation();
         return false;
     }
 
-    addEventListerns() {
+    static addEventListerns() {
         const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton, book } = BookElements;
 
         // Global events
@@ -27,6 +29,8 @@ class UserActions {
 
         // Book
         book.addEventListener("click", function () {
+            const cellText = document.getSelection();
+            if (cellText.type === "Range") return;
             Layout.handelTogglePanel();
         });
 

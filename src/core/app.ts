@@ -5,6 +5,7 @@ import HandleLayout from "./services/layout";
 import "./../assets/scss/app.scss";
 import UserActions from "./services/user-actions";
 import Navigation from "./services/navigation";
+import Layout from "./services/layout";
 
 class App {
     data!: DataProvider;
@@ -20,12 +21,14 @@ class App {
         const htmlChapters = await this.data.getHTMLChapters();
         HandleLayout.appendChaptersToBody(htmlChapters);
 
+        // Prepare actions panel
+        Layout.setActivePanelState(this.bookSettings.isPanelOpened);
+
         // Prepare navigation
         Navigation.updateNavigationFeedBack();
 
         // Adding events listeners
-        const userActions = new UserActions();
-        userActions.addEventListerns();
+        UserActions.addEventListerns();
 
         // Handle app responsivness
         HandleLayout.handelResponsivness();

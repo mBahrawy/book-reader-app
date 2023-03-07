@@ -3,8 +3,7 @@ import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
 
 class Layout {
-    static isActivePanel = false;
-    // static isActivePanel = bookSettings.isPanelOpened;
+    static isActivePanel = true;
 
     static appendChaptersToBody(elements: Element[]): void {
         BookElements.book.innerHTML = "";
@@ -24,6 +23,12 @@ class Layout {
 
         mediaQuery.addListener(handleResize);
         handleResize(mediaQuery.matches);
+    }
+
+    static setActivePanelState(state: boolean): void {
+        const { panel } = BookElements;
+        !state ? panel.classList.remove("opened") : panel.classList.add("opened");
+        this.isActivePanel = state;
     }
 
     static handelTogglePanel(): void {
