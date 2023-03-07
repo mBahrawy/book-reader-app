@@ -8,6 +8,8 @@ class BookElements {
 
     static navigationFeedbackText: HTMLElement = document.getElementById("navigation-feedback");
     static navigationProgressBar: HTMLElement = document.getElementById("navigation-progress-bar");
+
+    static panel: HTMLElement = document.querySelector(".panel");
 }
 
 export default BookElements;

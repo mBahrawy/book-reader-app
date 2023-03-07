@@ -6,7 +6,8 @@ export const bookSettings: BookSettings = {
     pagesPerScreen: 2,
     initwithPageIndex: 0,
     allowedNavigationSteps: 10,
-    mobileBreakporint: 1024
+    mobileBreakporint: 1024,
+    isPanelOpened: false
 };
 
 export const initApp = () => {

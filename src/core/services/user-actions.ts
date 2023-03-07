@@ -2,6 +2,7 @@ import Navigation from "./navigation";
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
 import { debounce } from "../helpers/debounce";
+import Layout from "./layout";
 
 class UserActions {
     preventScroll(e: Event) {
@@ -11,7 +12,7 @@ class UserActions {
     }
 
     addEventListerns() {
-        const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton } = BookElements;
+        const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton, book } = BookElements;
 
         // Global events
         window.addEventListener("wheel", this.preventScroll, { passive: false });
@@ -23,6 +24,11 @@ class UserActions {
                 Navigation.goToPage(Navigation.currentPageIndex + 1);
             }, 500)
         );
+
+        // Book
+        book.addEventListener("click", function () {
+            Layout.handelTogglePanel();
+        });
 
         // Buttons
         nextPageButton.addEventListener("click", function () {

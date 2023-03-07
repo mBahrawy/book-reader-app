@@ -4,4 +4,5 @@ export interface BookSettings {
     initwithPageIndex: number;
     allowedNavigationSteps: number;
     mobileBreakporint: number;
+    isPanelOpened: boolean;
 }

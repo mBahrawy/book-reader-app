@@ -1,6 +1,6 @@
 import { BookSettings } from "./interfaces/BookSettings";
 import DataProvider from "./services/data-provider";
-import HandleLayout from "./services/handel-layout";
+import HandleLayout from "./services/layout";
 
 import "./../assets/scss/app.scss";
 import UserActions from "./services/user-actions";

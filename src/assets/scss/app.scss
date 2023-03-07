@@ -1,3 +1,5 @@
+@import './mixins';
+
 html {
   font-size: 20px;
   height: 100%;
@@ -24,15 +26,21 @@ html {
 
 .panel {
   position: fixed;
+  display: none;
   left: 0;
+  bottom: -72px;
   width: 100%;
   background-color: rgb(245, 245, 245);
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 14px 24px;
-  bottom: 0;
   display: flex;
   column-gap: 20px;
   box-sizing: border-box;
+  @include transition(bottom 300ms ease-in-out);
+
+  &.opened {
+    bottom: 0;
+  }
 
   &__progress-bar {
     width: 100%;
@@ -48,11 +56,10 @@ html {
       height: 100%;
       width: 0%;
       background-color: #ff7a4f;
-      -webkit-transition: width 500ms ease-in-out;
-      -moz-transition: width 500ms ease-in-out;
-      -ms-transition: width 500ms ease-in-out;
-      -o-transition: width 500ms ease-in-out;
-      transition: width 500ms ease-in-out;
+      @include transition(width 500ms ease-in-out);
+
+
+
     }
   }
 
