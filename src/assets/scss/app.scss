@@ -19,10 +19,6 @@ html {
     height: 100%;
     box-sizing: border-box;
     flex-grow: 1;
-
-    @media (max-width: 1024px) {
-      column-count: 1;
-    }
   }
 }
 

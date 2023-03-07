@@ -3,4 +3,5 @@ export interface BookSettings {
     pagesPerScreen: 1 | 2;
     initwithPageIndex: number;
     allowedNavigationSteps: number;
+    mobileBreakporint: number;
 }

@@ -26,6 +26,9 @@ class App {
         // Adding events listeners
         const userActions = new UserActions();
         userActions.addEventListerns();
+
+        // Handle app responsivness
+        HandleLayout.handelResponsivness();
     }
 }
 

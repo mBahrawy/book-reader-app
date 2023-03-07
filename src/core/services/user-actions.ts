@@ -18,7 +18,10 @@ class UserActions {
 
         window.addEventListener(
             "resize",
-            debounce(() => Navigation.updateNavigationFeedBack, 500)
+            debounce(() => {
+                Navigation.updateNavigationFeedBack();
+                Navigation.goToPage(Navigation.currentPageIndex + 1);
+            }, 500)
         );
 
         // Buttons

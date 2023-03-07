@@ -27,13 +27,18 @@ class Navigation {
     }
 
     static getPagesCount(): number {
-        const count = Math.ceil(BookElements.book.scrollWidth / (BookElements.book.offsetWidth - 20));
+        const count = Math.ceil(BookElements.book.scrollWidth / this.getBookWidth());
         this.pagesCount = count;
         return count;
     }
 
-    static getScrollX(): number {
-        return (BookElements.book.offsetWidth - 20) * this.currentPageIndex;
+    static getScrollX(pageNumber: number | null = null): number {
+        const targetPageNumber = pageNumber ? pageNumber - 1 : null;
+        return this.getBookWidth() * (targetPageNumber ?? this.currentPageIndex);
+    }
+
+    static getBookWidth(): number {
+        return BookElements.book.getBoundingClientRect().width - 20;
     }
 
     static updateNavigationFeedBack(): void {
@@ -72,6 +77,17 @@ class Navigation {
         BookElements.book.scrollTo({
             top: 0,
             left: -this.getScrollX(),
+            behavior: "smooth"
+        });
+        this.updateNavigationFeedBack();
+    }
+
+    static goToPage(number: number): void {
+        if (number < 1 || number > this.getPagesCount()) return;
+
+        BookElements.book.scrollTo({
+            top: 0,
+            left: -this.getScrollX(number),
             behavior: "smooth"
         });
         this.updateNavigationFeedBack();
