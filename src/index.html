@@ -13,23 +13,92 @@
 </head>
 
 <body>
+  <!-- App business logic -->
   <div id="app-root">
+
+    <!-- Injecting pages -->
     <div id="book"></div>
+
+    <!-- Book control panel -->
     <div class="panel">
+
+      <!-- Progress bar  -->
       <div class="panel__progress-bar">
         <div id="navigation-progress-bar"></div>
       </div>
+
+
+      <!-- controls popup -->
+      <div id="controls-popup" class="controls">
+
+
+        <div class="controls__dropdown-menu">
+          <div class="controls__dropdown-menu--contents">
+
+            <!-- Font size control  -->
+            <div class="font-size-control">
+              <button id="smaller-font">
+                A
+              </button>
+              <button id="reset-font">100%</button>
+              <button id="larger-font">
+                A
+              </button>
+            </div>
+
+            <!-- Theme color control  -->
+            <div class="row">
+              <h5>Color Mode</h5>
+
+              <div class="color-modes">
+                <div class="change-color selected" data-value="white"></div>
+                <div class="change-color" data-value="dark"></div>
+                <div class="change-color" data-value="warm"></div>
+              </div>
+            </div>
+
+            <!-- Font control -->
+            <div class="row">
+              <h5>Font</h5>
+              <div class="selected-font-family">
+                Noto Naskh Arabic
+              </div>
+            </div>
+          </div>
+
+          <div class="fonts-list">
+            <button class="btn btn-link hide-fonts">
+              <i class="f-icon chevron-left-icon"></i>
+              Back
+            </button>
+            <button class="change-font-family selected" data-value="NotoNaskhArabic">
+              Noto Naskh Arabic
+            </button>
+            <button class="change-font-family" data-value="tahoma">
+              Tahoma
+            </button>
+            <button class="change-font-family" data-value="arial">
+              Arial
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle control button -->
+      <button class="action-button" id="toggle-controls-btn"><i class="fa-solid fa-gear"></i></button>
+
+      <!-- Book pages navigation section  -->
       <div class="panel__navigation">
-        <button id="next-bulk-page-btn"><i class="fa-solid fa-angles-left"></i></button>
-        <button id="next-page-btn"><i class="fa-solid fa-angle-left"></i></button>
+        <button class="action-button" id="next-bulk-page-btn"><i class="fa-solid fa-angles-left"></i></button>
+        <button class="action-button" id="next-page-btn"><i class="fa-solid fa-angle-left"></i></button>
         <small id="navigation-feedback"></small>
 
-        <button id="previous-page-btn"><i class="fa-solid fa-angle-right"></i></button>
-        <button id="previous-bulk-page-btn"><i class="fa-solid fa-angles-right"></i></button>
+        <button class="action-button" id="previous-page-btn"><i class="fa-solid fa-angle-right"></i></button>
+        <button class="action-button" id="previous-bulk-page-btn"><i class="fa-solid fa-angles-right"></i></button>
       </div>
+
     </div>
   </div>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 </body>
 
 </html>

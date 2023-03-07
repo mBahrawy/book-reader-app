@@ -1,6 +1,5 @@
 import { BookSettings } from "./interfaces/BookSettings";
 import DataProvider from "./services/data-provider";
-import HandleLayout from "./services/layout";
 
 import "./../assets/scss/app.scss";
 import UserActions from "./services/user-actions";
@@ -19,7 +18,7 @@ class App {
         // Fetching data and injecting it into DOM
         this.data = new DataProvider(this.bookSettings.bookId);
         const htmlChapters = await this.data.getHTMLChapters();
-        HandleLayout.appendChaptersToBody(htmlChapters);
+        Layout.appendChaptersToBody(htmlChapters);
 
         // Update images url
         Layout.updateImagesUrl(document.querySelectorAll("#book img"));
@@ -28,13 +27,13 @@ class App {
         Layout.setActivePanelState(this.bookSettings.isPanelOpened);
 
         // Prepare navigation
-        Navigation.updateNavigationFeedBack();
+        Navigation.updateNavigation();
 
         // Adding events listeners
         UserActions.addEventListerns();
 
         // Handle app responsivness
-        HandleLayout.handelResponsivness();
+        Layout.handelResponsivness();
     }
 }
 

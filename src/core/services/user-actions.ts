@@ -14,7 +14,17 @@ class UserActions {
     }
 
     static addEventListerns() {
-        const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton, book } = BookElements;
+        const {
+            nextPageButton,
+            previousPageButton,
+            nextBulkPageButton,
+            previousBulkPageButton,
+            book,
+            smallerFontButton,
+            resetFontButton,
+            largerFontButton,
+            controlsButton
+        } = BookElements;
 
         // Global events
         window.addEventListener("wheel", this.preventScroll, { passive: false });
@@ -22,7 +32,7 @@ class UserActions {
         window.addEventListener(
             "resize",
             debounce(() => {
-                Navigation.updateNavigationFeedBack();
+                Navigation.updateNavigation();
                 Navigation.goToPage(Navigation.currentPageIndex + 1);
             }, 500)
         );
@@ -34,7 +44,7 @@ class UserActions {
             Layout.handelTogglePanel();
         });
 
-        // Buttons
+        // Navigation Buttons
         nextPageButton.addEventListener("click", function () {
             Navigation.next();
         });
@@ -47,6 +57,22 @@ class UserActions {
         previousBulkPageButton.addEventListener("click", function () {
             Navigation.previous(bookSettings.allowedNavigationSteps);
         });
+
+        // Panel control actions
+        controlsButton.addEventListener("click", function () {
+            Layout.toggleContol();
+        });
+        smallerFontButton.addEventListener("click", function () {
+            Layout.smallerFont();
+        });
+        resetFontButton.addEventListener("click", function () {
+            Layout.resetFont();
+        });
+        largerFontButton.addEventListener("click", function () {
+            Layout.largerFont();
+        });
+
+        largerFontButton;
     }
 }
 

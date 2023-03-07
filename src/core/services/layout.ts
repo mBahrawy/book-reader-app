@@ -1,9 +1,12 @@
 import MediaQuery from "./media-query";
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
+import Navigation from "./navigation";
 
 class Layout {
-    static isActivePanel = true;
+    static isActivePanel: boolean;
+    static isActiveControls = false;
+    static fontSizeRatio = 1;
 
     static updateImagesUrl(imagesList: NodeListOf<Element>): void {
         const replaceUrl = (old: string): string => {
@@ -42,9 +45,34 @@ class Layout {
     }
 
     static handelTogglePanel(): void {
-        const { panel } = BookElements;
+        const { panel, controlsPopup } = BookElements;
         this.isActivePanel ? panel.classList.remove("opened") : panel.classList.add("opened");
+        this.isActivePanel && controlsPopup.classList.remove("opened");
         this.isActivePanel = !this.isActivePanel;
+    }
+
+    static toggleContol(): void {
+        const { controlsPopup } = BookElements;
+        this.isActiveControls ? controlsPopup.classList.remove("opened") : controlsPopup.classList.add("opened");
+        this.isActiveControls = !this.isActiveControls;
+    }
+
+    static smallerFont(): void {
+        if (this.fontSizeRatio < 0.6) return;
+        this.fontSizeRatio -= 0.1;
+        BookElements.book.style.fontSize = `${this.fontSizeRatio}rem`;
+        Navigation.updateNavigation();
+    }
+    static resetFont(): void {
+        this.fontSizeRatio = 1;
+        BookElements.book.style.fontSize = "1rem";
+        Navigation.updateNavigation();
+    }
+    static largerFont(): void {
+        if (this.fontSizeRatio > 1.8) return;
+        this.fontSizeRatio += 0.1;
+        BookElements.book.style.fontSize = `${this.fontSizeRatio}rem`;
+        Navigation.updateNavigation();
     }
 }
 

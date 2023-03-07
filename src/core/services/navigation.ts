@@ -43,7 +43,7 @@ class Navigation {
         return BookElements.book.getBoundingClientRect().width - 20;
     }
 
-    static updateNavigationFeedBack(): void {
+    static updateNavigation(): void {
         // Check is nav buttons are active
         const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton } = BookElements;
 
@@ -70,7 +70,7 @@ class Navigation {
             left: -this.getScrollX(),
             behavior: "smooth"
         });
-        this.updateNavigationFeedBack();
+        this.updateNavigation();
     }
 
     static previous(number = 1): void {
@@ -81,7 +81,7 @@ class Navigation {
             left: -this.getScrollX(),
             behavior: "smooth"
         });
-        this.updateNavigationFeedBack();
+        this.updateNavigation();
     }
 
     static goToPage(number: number): void {
@@ -92,7 +92,7 @@ class Navigation {
             left: -this.getScrollX(number),
             behavior: "smooth"
         });
-        this.updateNavigationFeedBack();
+        this.updateNavigation();
     }
 }
 
