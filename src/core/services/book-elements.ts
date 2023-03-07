@@ -13,6 +13,10 @@ class BookElements {
     static colorThemeButtons: NodeListOf<HTMLElement> = document.querySelectorAll(".color-btn");
     static fontButtons: NodeListOf<HTMLElement> = document.querySelectorAll(".font-btn");
 
+    static toggleFontsListButtons: NodeListOf<HTMLElement> = document.querySelectorAll(".toggle-fonts-list");
+    static fontsList: HTMLElement = document.querySelector(".fonts-list");
+    static fontFeedback: HTMLElement = document.querySelector(".toggle-fonts-list span");
+
     static controlsButton: HTMLElement = document.getElementById("toggle-controls-btn");
     static controlsPopup: HTMLElement = document.getElementById("controls-popup");
 

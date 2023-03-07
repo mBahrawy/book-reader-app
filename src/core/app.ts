@@ -18,6 +18,9 @@ class App {
         // Set defualt color theme
         Layout.setColorTheme(this.bookSettings.defaultColorTheme);
 
+        // Set defualt font family
+        Layout.setFont(this.bookSettings.defaultFont);
+
         // Fetching data and injecting it into DOM
         this.data = new DataProvider(this.bookSettings.bookId);
         const htmlChapters = await this.data.getHTMLChapters();

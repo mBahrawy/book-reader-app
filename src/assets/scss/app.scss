@@ -106,7 +106,7 @@ html {
     width: 349px;
     background-color: #fff;
     color: #000;
-    border-radius: 1rem;
+    border-radius: 16px;
     box-shadow: 0 0 30px rgb(0 0 0 / 20%);
     z-index: 10;
 
@@ -122,41 +122,50 @@ html {
       border-width: 14px 12px 0 12px;
       border-color: #ffffff transparent transparent transparent;
     }
+    &--contents {
+      overflow: hidden;
+      position: relative;
+      border-radius: 16px;
 
-    .font-size-control {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include transition(height 500ms ease-in-out);
 
-      button {
+
+
+      .font-size-control {
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        flex: 1;
-        border-radius: 0;
-        padding: 20px;
-        height: 60px;
-        border: 0;
-        border-right: 0.01rem solid grey;
-        border-bottom: 0.01rem solid grey;
-        background-color: transparent;
-        cursor: pointer;
 
-        &:last-child {
-          border-right: 0;
-        }
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex: 1;
+          border-radius: 0;
+          padding: 20px;
+          height: 60px;
+          border: 0;
+          border-right: 0.01rem solid grey;
+          border-bottom: 0.01rem solid grey;
+          background-color: transparent;
+          cursor: pointer;
 
-        &#smaller-font {
-          font-size: 15px;
-        }
+          &:last-child {
+            border-right: 0;
+          }
 
-        &#reset-font {
-          font-size: 20px;
-        }
+          &#smaller-font {
+            font-size: 15px;
+          }
 
-        &#larger-font {
-          font-size: 25px;
+          &#reset-font {
+            font-size: 20px;
+          }
+
+          &#larger-font {
+            font-size: 25px;
+          }
         }
       }
     }
@@ -208,16 +217,34 @@ html {
     }
   }
 
-  .selected-font {
+  .toggle-fonts-list {
     font-size: 16px;
     background-color: transparent;
     border: 0;
     color: rgb(0 0 0 / 51%);
     cursor: pointer;
+    span {
+      margin: 0 10px;
+    }
   }
 
   .fonts-list {
-    // display: none;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 16px;
+    height: 300px;
+    width: 100%;
 
+    display: none;
+    @include transition(all 500ms ease-in-out);
+
+
+    &.slide-up {
+      transform: translateY(100%);
+      // opacity: 0;
+      display: none;
+    }
   }
 }

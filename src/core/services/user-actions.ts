@@ -25,6 +25,7 @@ class UserActions {
             resetFontButton,
             largerFontButton,
             controlsButton,
+            toggleFontsListButtons,
             colorThemeButtons,
             fontButtons
         } = BookElements;
@@ -73,6 +74,12 @@ class UserActions {
         });
         largerFontButton.addEventListener("click", function () {
             Layout.largerFont();
+        });
+
+        toggleFontsListButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                Layout.toggleFontList();
+            });
         });
 
         // Select color theme

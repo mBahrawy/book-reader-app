@@ -15,7 +15,7 @@ export enum ColorTheme {
     WARM = "warm-theme"
 }
 export enum Font {
-    NOTO = "noto",
-    TAHOMA = "tahoma",
-    ARIAL = "arial"
+    NOTO = "Noto Naskh Arabic",
+    TAHOMA = "Tahoma",
+    ARIAL = "Arial"
 }

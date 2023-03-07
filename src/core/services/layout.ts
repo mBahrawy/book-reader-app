@@ -7,7 +7,15 @@ import Navigation from "./navigation";
 class Layout {
     static isActivePanel: boolean;
     static isActiveControls = false;
+    static isActiveFontsList = false;
     static fontSizeRatio = 1;
+    static selectedFont: Font;
+    static fontsListOriginalParentHeight: number;
+
+    private static _updateFontFeedback(font: Font): void {
+        this.selectedFont = font;
+        BookElements.fontFeedback.innerHTML = font;
+    }
 
     private static _updateButtonsDisablity(): void {
         const { largerFontButton, smallerFontButton } = BookElements;
@@ -103,11 +111,37 @@ class Layout {
     static setFont(newFont: Font): void {
         const { book, fontButtons } = BookElements;
         book.setAttribute("class", "");
-        book.classList.add(newFont);
+        book.classList.add(newFont.replaceAll(" ", "-"));
+        console.log(newFont);
+
         fontButtons.forEach((button) => {
             const fontValue: Font = button.getAttribute("data-value") as Font;
             newFont === fontValue ? button.classList.add("selected") : button.classList.remove("selected");
+            newFont === fontValue && this._updateFontFeedback(newFont);
         });
+    }
+
+    static toggleFontList(): void {
+        const { fontsList } = BookElements;
+
+        if (fontsList.classList.contains("slide-up")) {
+            this.fontsListOriginalParentHeight = fontsList.parentElement.offsetHeight;
+            fontsList.classList.remove("slide-up");
+            fontsList.style.display = "block";
+            setTimeout(() => {
+                fontsList.parentElement.style.height = `${fontsList.offsetHeight}px`;
+                fontsList.style.transform = "translateY(0)";
+            }, 10);
+        } else {
+            fontsList.style.transform = "translateY(100%)";
+            fontsList.parentElement.style.height = `${this.fontsListOriginalParentHeight}px`;
+            setTimeout(() => {
+                fontsList.style.display = "none";
+                fontsList.classList.add("slide-up");
+            }, 500);
+        }
+
+        this.isActiveFontsList = !this.isActiveFontsList;
     }
 }
 
