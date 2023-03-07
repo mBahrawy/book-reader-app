@@ -6,10 +6,16 @@ export interface BookSettings {
     mobileBreakporint: number;
     isPanelOpened: boolean;
     defaultColorTheme: ColorTheme;
+    defaultFont: Font;
 }
 
 export enum ColorTheme {
     WHITE = "white-theme",
     DARK = "dark-theme",
     WARM = "warm-theme"
+}
+export enum Font {
+    NOTO = "noto",
+    TAHOMA = "tahoma",
+    ARIAL = "arial"
 }

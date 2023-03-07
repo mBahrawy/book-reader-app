@@ -1,0 +1,29 @@
+// Control color theme
+body {
+  &.white-theme {
+    // background-color: #a6a5b2;
+  }
+
+  &.dark-theme {
+    // background-color: #343434;
+  }
+
+  &.warm-theme {
+    // background-color: #de886c;
+  }
+}
+
+// Control Font
+#book {
+  &.noto {
+    font-family: NotoNaskhArabic, sans-serif;
+  }
+
+  &.arial {
+    font-family: Arial, serif;
+  }
+
+  &.tahoma {
+    font-family: Tahoma, serif;
+  }
+}

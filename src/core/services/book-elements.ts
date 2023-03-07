@@ -10,7 +10,8 @@ class BookElements {
     static resetFontButton: HTMLElement = document.getElementById("reset-font");
     static largerFontButton: HTMLElement = document.getElementById("larger-font");
 
-    static colorThemeButtons: NodeListOf<HTMLElement> = document.querySelectorAll(".color-btn ");
+    static colorThemeButtons: NodeListOf<HTMLElement> = document.querySelectorAll(".color-btn");
+    static fontButtons: NodeListOf<HTMLElement> = document.querySelectorAll(".font-btn");
 
     static controlsButton: HTMLElement = document.getElementById("toggle-controls-btn");
     static controlsPopup: HTMLElement = document.getElementById("controls-popup");

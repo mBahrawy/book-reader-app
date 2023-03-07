@@ -1,4 +1,4 @@
-import { ColorTheme } from "./../interfaces/BookSettings";
+import { ColorTheme, Font } from "./../interfaces/BookSettings";
 import MediaQuery from "./media-query";
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
@@ -97,6 +97,16 @@ class Layout {
         BookElements.colorThemeButtons.forEach((button) => {
             const themeValue: ColorTheme = button.getAttribute("data-value") as ColorTheme;
             newTheme === themeValue ? button.classList.add("selected") : button.classList.remove("selected");
+        });
+    }
+
+    static setFont(newFont: Font): void {
+        const { book, fontButtons } = BookElements;
+        book.setAttribute("class", "");
+        book.classList.add(newFont);
+        fontButtons.forEach((button) => {
+            const fontValue: Font = button.getAttribute("data-value") as Font;
+            newFont === fontValue ? button.classList.add("selected") : button.classList.remove("selected");
         });
     }
 }

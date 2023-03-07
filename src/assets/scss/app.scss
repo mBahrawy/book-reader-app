@@ -1,20 +1,9 @@
 @import './mixins';
+@import './book-controls';
 
 html {
   font-size: 20px;
   height: 100%;
-}
-
-body.white-theme {
-  background-color: #a6a5b2;
-}
-
-body.dark-theme {
-  background-color: #343434;
-}
-
-body.warm-theme {
-  background-color: #de886c;
 }
 
 #app-root {
@@ -40,10 +29,9 @@ body.warm-theme {
   position: fixed;
   display: none;
   left: 0;
-  bottom: -72px;
+  bottom: -80px;
   width: 100%;
   background-color: rgb(245, 245, 245);
-  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 14px 24px;
   display: flex;
   box-sizing: border-box;
@@ -88,8 +76,8 @@ body.warm-theme {
   button.action-button {
     background-color: transparent;
     border: 0.5px solid #a6a5b2;
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -113,27 +101,25 @@ body.warm-theme {
 
   &__dropdown-menu {
     position: absolute;
-    bottom: 3rem;
-    left: -0.5rem;
-    min-width: 22rem;
+    bottom: 51px;
+    left: -12px;
+    width: 349px;
     background-color: #fff;
     color: #000;
     border-radius: 1rem;
     box-shadow: 0 0 30px rgb(0 0 0 / 20%);
     z-index: 10;
 
-
-
     &:before {
       content: "";
       position: absolute;
-      bottom: -16px;
+      bottom: -13px;
       left: 22px;
       z-index: 1;
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 18px 12px 0 12px;
+      border-width: 14px 12px 0 12px;
       border-color: #ffffff transparent transparent transparent;
     }
 
@@ -179,13 +165,8 @@ body.warm-theme {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 1.3rem;
-      padding: 18px 20px 0;
-
-      &:last-child {
-        padding-bottom: 18px;
-
-      }
+      font-size: 1.1rem;
+      padding: 15px 10px;
     }
   }
 
@@ -195,13 +176,11 @@ body.warm-theme {
 
     .color-btn {
       background-color: #a6a5b2;
-      width: 50px;
-      height: 50px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      border: 3px solid transparent;
+      border: 2px solid transparent;
       cursor: pointer;
-
-
 
       &[data-value="white-theme"] {
         background-color: #fff;
@@ -226,17 +205,19 @@ body.warm-theme {
           border-color: rgb(239 201 118);
         }
       }
-
-
-
-
-
-
-
     }
   }
 
+  .selected-font {
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    color: rgb(0 0 0 / 51%);
+    cursor: pointer;
+  }
+
   .fonts-list {
-    display: none;
+    // display: none;
+
   }
 }
