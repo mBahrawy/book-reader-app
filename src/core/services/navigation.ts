@@ -1,11 +1,8 @@
-import UserActions from "./user-actions";
-
+import BookElements from "./book-elements";
+import { bookSettings } from "../../index";
 class Navigation {
     static currentPageIndex = 0;
     static pagesCount: number;
-    static book: HTMLElement = document.getElementById("book");
-    static navigationFeedbackText: HTMLElement = document.getElementById("navigation-feedback");
-    static navigationProgressBar: HTMLElement = document.getElementById("navigation-progress-bar");
 
     static isNextEnabled(number = 1): boolean {
         return this.currentPageIndex + 1 < this.getPagesCount() - number + 1;
@@ -30,38 +27,38 @@ class Navigation {
     }
 
     static getPagesCount(): number {
-        const count = Math.ceil(this.book.scrollWidth / (this.book.offsetWidth - 20));
+        const count = Math.ceil(BookElements.book.scrollWidth / (BookElements.book.offsetWidth - 20));
         this.pagesCount = count;
         return count;
     }
 
     static getScrollX(): number {
-        return (this.book.offsetWidth - 20) * this.currentPageIndex;
+        return (BookElements.book.offsetWidth - 20) * this.currentPageIndex;
     }
 
     static updateNavigationFeedBack(): void {
         // Check is nav buttons are active
-        const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton }: UserActions = new UserActions();
+        const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton } = BookElements;
 
         (nextPageButton as HTMLButtonElement).disabled = !this.isNextEnabled();
-        (nextBulkPageButton as HTMLButtonElement).disabled = !this.isNextEnabled(10);
+        (nextBulkPageButton as HTMLButtonElement).disabled = !this.isNextEnabled(bookSettings.allowedNavigationSteps);
         (previousPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled();
-        (previousBulkPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled(10);
+        (previousBulkPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled(bookSettings.allowedNavigationSteps);
 
         // Apply this asyncronsly
         setTimeout(() => {
             // Update progress bar
-            this.navigationProgressBar.style.width = `${(this.getCurrentPage() / this.pagesCount) * 100}%`;
+            BookElements.navigationProgressBar.style.width = `${(this.getCurrentPage() / this.pagesCount) * 100}%`;
 
             // Update navigation info
-            this.navigationFeedbackText.innerHTML = `${this.getCurrentPage()} / ${this.getPagesCount()}`;
+            BookElements.navigationFeedbackText.innerHTML = `${this.getCurrentPage()} / ${this.getPagesCount()}`;
         }, 0);
     }
 
     static next(number = 1): void {
         if (this.getCurrentPage() >= this.getPagesCount()) return;
         this.currentPageIndex += number;
-        this.book.scrollTo({
+        BookElements.book.scrollTo({
             top: 0,
             left: -this.getScrollX(),
             behavior: "smooth"
@@ -72,7 +69,7 @@ class Navigation {
     static previous(number = 1): void {
         if (this.getCurrentPage() <= 1) return;
         this.currentPageIndex -= number;
-        this.book.scrollTo({
+        BookElements.book.scrollTo({
             top: 0,
             left: -this.getScrollX(),
             behavior: "smooth"

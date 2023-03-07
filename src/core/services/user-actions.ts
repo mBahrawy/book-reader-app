@@ -1,32 +1,38 @@
 import Navigation from "./navigation";
+import BookElements from "./book-elements";
+import { bookSettings } from "../../index";
+import { debounce } from "../helpers/debounce";
 
 class UserActions {
-    nextPageButton: HTMLElement = document.getElementById("next-page-btn");
-    previousPageButton: HTMLElement = document.getElementById("previous-page-btn");
-    nextBulkPageButton: HTMLElement = document.getElementById("next-bulk-page-btn");
-    previousBulkPageButton: HTMLElement = document.getElementById("previous-bulk-page-btn");
+    preventScroll(e: Event) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
 
     addEventListerns() {
+        const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton } = BookElements;
+
         // Global events
-        document.addEventListener("wheel", preventScroll, { passive: false });
-        function preventScroll(e: Event) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        }
+        window.addEventListener("wheel", this.preventScroll, { passive: false });
+
+        window.addEventListener(
+            "resize",
+            debounce(() => Navigation.updateNavigationFeedBack, 500)
+        );
 
         // Buttons
-        this.nextPageButton.addEventListener("click", function () {
+        nextPageButton.addEventListener("click", function () {
             Navigation.next();
         });
-        this.previousPageButton.addEventListener("click", function () {
+        previousPageButton.addEventListener("click", function () {
             Navigation.previous();
         });
-        this.nextBulkPageButton.addEventListener("click", function () {
-            Navigation.next(10);
+        nextBulkPageButton.addEventListener("click", function () {
+            Navigation.next(bookSettings.allowedNavigationSteps);
         });
-        this.previousBulkPageButton.addEventListener("click", function () {
-            Navigation.previous(10);
+        previousBulkPageButton.addEventListener("click", function () {
+            Navigation.previous(bookSettings.allowedNavigationSteps);
         });
     }
 }

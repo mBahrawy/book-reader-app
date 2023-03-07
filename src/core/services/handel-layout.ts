@@ -1,7 +1,10 @@
+import BookElements from "./book-elements";
+
 class HandleLayout {
     static appendChaptersToBody(elements: Element[]) {
+        BookElements.book.innerHTML = "";
         elements.forEach((el) => {
-            document.getElementById("book").appendChild(el);
+            BookElements.book.appendChild(el);
         });
     }
 }

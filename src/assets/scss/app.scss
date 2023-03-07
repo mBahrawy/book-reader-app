@@ -12,13 +12,17 @@ html {
   #book {
     overflow-x: hidden;
     overflow-y: hidden;
-    column-width: calc(45vw - 2rem);
     padding: 0 40px;
     column-gap: 3rem;
+    column-count: 2;
     direction: rtl;
     height: 100%;
     box-sizing: border-box;
     flex-grow: 1;
+
+    @media (max-width: 1024px) {
+      column-count: 1;
+    }
   }
 }
 
