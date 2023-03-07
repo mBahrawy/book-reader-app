@@ -21,6 +21,16 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.m?ts$|\.tsx?$/,
+                // exclude: /node_modules/,
+                use: {
+                    loader: "ts-loader",
+                    options: {
+                        onlyCompileBundledFiles: true
+                    }
+                }
+            },
+            {
                 test: /\.(scss|css)$/,
                 use: [
                     process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -36,7 +46,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".ts"]
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
     },
     plugins: [
         new MiniCssExtractPlugin({
