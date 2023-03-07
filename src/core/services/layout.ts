@@ -58,21 +58,36 @@ class Layout {
     }
 
     static smallerFont(): void {
-        if (this.fontSizeRatio < 0.6) return;
-        this.fontSizeRatio -= 0.1;
-        BookElements.book.style.fontSize = `${this.fontSizeRatio}rem`;
+        if (this.fontSizeRatio <= 0.7) return;
+        const { book, resetFontButton } = BookElements;
+        this.fontSizeRatio -= 0.15;
+        book.style.fontSize = `${this.fontSizeRatio}rem`;
+        resetFontButton.innerHTML = `${Math.ceil(this.fontSizeRatio * 100)}%`;
+        this._updateButtonsDisablity();
         Navigation.updateNavigation();
     }
     static resetFont(): void {
+        const { book, resetFontButton } = BookElements;
         this.fontSizeRatio = 1;
-        BookElements.book.style.fontSize = "1rem";
+        book.style.fontSize = "1rem";
+        resetFontButton.innerHTML = `100%`;
+        this._updateButtonsDisablity();
         Navigation.updateNavigation();
     }
     static largerFont(): void {
-        if (this.fontSizeRatio > 1.8) return;
-        this.fontSizeRatio += 0.1;
-        BookElements.book.style.fontSize = `${this.fontSizeRatio}rem`;
+        if (this.fontSizeRatio >= 1.28) return;
+        const { book, resetFontButton } = BookElements;
+        this.fontSizeRatio += 0.15;
+        book.style.fontSize = `${this.fontSizeRatio}rem`;
+        resetFontButton.innerHTML = `${Math.ceil(this.fontSizeRatio * 100)}%`;
+        this._updateButtonsDisablity();
         Navigation.updateNavigation();
+    }
+
+    private static _updateButtonsDisablity() {
+        const { largerFontButton, smallerFontButton } = BookElements;
+        (largerFontButton as HTMLButtonElement).disabled = this.fontSizeRatio >= 1.28;
+        (smallerFontButton as HTMLButtonElement).disabled = this.fontSizeRatio <= 0.7;
     }
 }
 
