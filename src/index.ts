@@ -1,4 +1,4 @@
-import { BookSettings } from "./core/interfaces/BookSettings";
+import { BookSettings, ColorTheme } from "./core/interfaces/BookSettings";
 import App from "./core/app";
 
 export const bookSettings: BookSettings = {
@@ -7,7 +7,8 @@ export const bookSettings: BookSettings = {
     initwithPageIndex: 0,
     allowedNavigationSteps: 10,
     mobileBreakporint: 1024,
-    isPanelOpened: true
+    isPanelOpened: true,
+    defaultColorTheme: ColorTheme.WHITE
 };
 
 export const initApp = () => {

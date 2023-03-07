@@ -5,6 +5,18 @@ html {
   height: 100%;
 }
 
+body.white-theme {
+  background-color: #a6a5b2;
+}
+
+body.dark-theme {
+  background-color: #343434;
+}
+
+body.warm-theme {
+  background-color: #de886c;
+}
+
 #app-root {
   height: calc(100vh + -6rem);
   padding: 3rem 0;
@@ -94,9 +106,11 @@ html {
 .controls {
   position: relative;
   display: none;
+
   &.opened {
     display: block;
   }
+
   &__dropdown-menu {
     position: absolute;
     bottom: 3rem;
@@ -164,8 +178,65 @@ html {
     .row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 15px 10px;
+      justify-content: space-between;
+      font-size: 1.3rem;
+      padding: 18px 20px 0;
+
+      &:last-child {
+        padding-bottom: 18px;
+
+      }
     }
+  }
+
+  .themes {
+    display: flex;
+    column-gap: 12px;
+
+    .color-btn {
+      background-color: #a6a5b2;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+
+
+
+      &[data-value="white-theme"] {
+        background-color: #fff;
+
+        &.selected {
+          border-color: #000;
+        }
+      }
+
+      &[data-value="dark-theme"] {
+        background-color: #000;
+
+        &.selected {
+          border-color: #fff;
+        }
+      }
+
+      &[data-value="warm-theme"] {
+        background-color: #f6efdf;
+
+        &.selected {
+          border-color: rgb(239 201 118);
+        }
+      }
+
+
+
+
+
+
+
+    }
+  }
+
+  .fonts-list {
+    display: none;
   }
 }

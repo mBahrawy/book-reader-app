@@ -3,6 +3,7 @@ import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
 import { debounce } from "../helpers/debounce";
 import Layout from "./layout";
+import { ColorTheme } from "../interfaces/BookSettings";
 
 class UserActions {
     private constructor() {}
@@ -23,7 +24,8 @@ class UserActions {
             smallerFontButton,
             resetFontButton,
             largerFontButton,
-            controlsButton
+            controlsButton,
+            colorThemeButtons
         } = BookElements;
 
         // Global events
@@ -72,7 +74,12 @@ class UserActions {
             Layout.largerFont();
         });
 
-        largerFontButton;
+        colorThemeButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const theme: ColorTheme = button.getAttribute("data-value") as ColorTheme;
+                Layout.setColorTheme(theme);
+            });
+        });
     }
 }
 

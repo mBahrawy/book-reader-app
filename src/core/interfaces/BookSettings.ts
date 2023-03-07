@@ -5,4 +5,11 @@ export interface BookSettings {
     allowedNavigationSteps: number;
     mobileBreakporint: number;
     isPanelOpened: boolean;
+    defaultColorTheme: ColorTheme;
+}
+
+export enum ColorTheme {
+    WHITE = "white-theme",
+    DARK = "dark-theme",
+    WARM = "warm-theme"
 }

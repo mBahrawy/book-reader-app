@@ -15,13 +15,17 @@ class App {
     }
 
     async initBook(): Promise<void> {
+        // Set defualt color theme
+        Layout.setColorTheme(this.bookSettings.defaultColorTheme);
+
         // Fetching data and injecting it into DOM
         this.data = new DataProvider(this.bookSettings.bookId);
         const htmlChapters = await this.data.getHTMLChapters();
         Layout.appendChaptersToBody(htmlChapters);
 
         // Update images url
-        Layout.updateImagesUrl(document.querySelectorAll("#book img"));
+        const images = document.querySelectorAll("#book img");
+        Layout.updateImagesUrl(images);
 
         // Prepare actions panel
         Layout.setActivePanelState(this.bookSettings.isPanelOpened);

@@ -1,3 +1,4 @@
+import { ColorTheme } from "./../interfaces/BookSettings";
 import MediaQuery from "./media-query";
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
@@ -7,6 +8,12 @@ class Layout {
     static isActivePanel: boolean;
     static isActiveControls = false;
     static fontSizeRatio = 1;
+
+    private static _updateButtonsDisablity(): void {
+        const { largerFontButton, smallerFontButton } = BookElements;
+        (largerFontButton as HTMLButtonElement).disabled = this.fontSizeRatio >= 1.28;
+        (smallerFontButton as HTMLButtonElement).disabled = this.fontSizeRatio <= 0.7;
+    }
 
     static updateImagesUrl(imagesList: NodeListOf<Element>): void {
         const replaceUrl = (old: string): string => {
@@ -84,10 +91,13 @@ class Layout {
         Navigation.updateNavigation();
     }
 
-    private static _updateButtonsDisablity() {
-        const { largerFontButton, smallerFontButton } = BookElements;
-        (largerFontButton as HTMLButtonElement).disabled = this.fontSizeRatio >= 1.28;
-        (smallerFontButton as HTMLButtonElement).disabled = this.fontSizeRatio <= 0.7;
+    static setColorTheme(newTheme: ColorTheme): void {
+        document.body.setAttribute("class", "");
+        document.body.classList.add(newTheme);
+        BookElements.colorThemeButtons.forEach((button) => {
+            const themeValue: ColorTheme = button.getAttribute("data-value") as ColorTheme;
+            newTheme === themeValue ? button.classList.add("selected") : button.classList.remove("selected");
+        });
     }
 }
 
