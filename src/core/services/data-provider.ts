@@ -1,6 +1,4 @@
-// const prodRootUrl = "http://localhost:8080";
-const prodRootUrl = "https://ahmediznagwa.github.io/New-Hindawi-Reader";
-
+const baseUrl = `${location.protocol}//${location.host}`;
 class DataProvider {
     id: string;
     chaptersNames: string[];
@@ -15,7 +13,7 @@ class DataProvider {
 
     private async _getNavigation(): Promise<string | null> {
         try {
-            const res = await fetch(`${prodRootUrl}/packages/${this.id}/Navigation/nav.xhtml`);
+            const res = await fetch(`${baseUrl}/packages/${this.id}/Navigation/nav.xhtml`);
             return await res.text();
         } catch (e) {
             console.log(e);
@@ -25,7 +23,7 @@ class DataProvider {
 
     private async _getHTMLDocument(name: string): Promise<string | null> {
         try {
-            const res = await fetch(`${prodRootUrl}/packages/${this.id}/Content/${name}`);
+            const res = await fetch(`${baseUrl}/packages/${this.id}/Content/${name}`);
             return await res.text();
         } catch (e) {
             console.log(e);

@@ -7,7 +7,7 @@ export const bookSettings: BookSettings = {
     initwithPageIndex: 0,
     allowedNavigationSteps: 10,
     mobileBreakporint: 1024,
-    isPanelOpened: true,
+    isPanelOpened: false,
     defaultColorTheme: ColorTheme.WHITE,
     defaultFont: Font.NOTO
 };
