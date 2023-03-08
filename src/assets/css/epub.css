@@ -1,39 +1,3 @@
-@font-face {
-  font-family: NotoNaskhArabic;
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/NotoNaskhArabic.ttf);
-}
-@font-face {
-  font-family: NotoNaskhArabic-Bold;
-  font-style: normal;
-  font-weight: 700;
-  src: url(../fonts/NotoNaskhArabic-Bold.ttf);
-}
-@font-face {
-  font-family: NotoKufiArabic;
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/NotoKufiArabic.ttf);
-}
-@font-face {
-  font-family: NotoKufiArabic-Bold;
-  font-style: normal;
-  font-weight: 700;
-  src: url(../fonts/NotoKufiArabic-Bold.ttf);
-}
-@font-face {
-  font-family: Material-Design-Iconic-Font;
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/Material-Design-Iconic-Font.ttf);
-}
-@font-face {
-  font-family: Quran;
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/Quran.ttf);
-}
 body {
   font-family: NotoNaskhArabic, sans-serif !important;
   font-size: 1em;

@@ -1,0 +1,15 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  height: 100%;
+}
+
+.blockquote,
+.epigraph {
+  background-color: var(--light-gray-color-rgb);
+}

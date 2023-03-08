@@ -1,0 +1,18 @@
+#app-root {
+  height: calc(100vh + -6rem);
+  padding: 3rem 0;
+  overflow-x: auto;
+  display: flex;
+
+  #book {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0 40px;
+    column-gap: 3rem;
+    column-count: 2;
+    direction: rtl;
+    height: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+  }
+}

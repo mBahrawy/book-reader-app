@@ -1,0 +1,47 @@
+// Control color theme
+body {
+  --background-color-rgb: rgba(var(--background-color), 1);
+  --text-color-rgb: rgba(var(--text-color), 1);
+  --dark-color-rgb: rgba(var(--dark-color), 1);
+  --light-gray-color-rgb: rgba(var(--light-gray-color), 1);
+  --light-color-rgb: rgba(var(--light-color), 1);
+
+  // &.white-theme {
+    // background-color: #a6a5b2;
+  // }
+
+  &.dark-theme {
+    --background-color: 0, 0, 0;
+    --text-color: 255, 255, 255;
+    --dark-color: 255, 255, 255;
+    --light-gray-color: 17, 17, 17;
+    --light-color: 51, 51, 51;
+  }
+
+  &.warm-theme {
+    --background-color: 246, 239, 223;
+    --text-color: 0, 0, 0;
+    --dark-color: 239, 201, 118;
+    --light-gray-color: 242, 228, 197;
+    --light-color: 246, 239, 223;
+  }
+
+  background-color: var(--background-color-rgb);
+  color: var(--text-color-rgb);
+}
+
+// Control Font
+#book {
+
+  &.Noto-Naskh-Arabic {
+    font-family: NotoNaskhArabic, sans-serif;
+  }
+
+  &.Arial {
+    font-family: Arial, serif;
+  }
+
+  &.Tahoma {
+    font-family: Tahoma, serif;
+  }
+}
