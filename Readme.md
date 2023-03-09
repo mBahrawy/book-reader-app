@@ -1,12 +1,25 @@
-## Starter
-In the below link, you can find the desired outcome of the task alongside an Attached .zip file that contains your starter files.
+## About app
+This is an e-book reader app, based on xhml pages, user can navigate pages, chage color theme, font size and font family.
 
-## Refrence Link
-https://ahmediznagwa.github.io/New-Hindawi-Reader/index.html
+## About the archetture
+The app is design with OOP powerd by Typescript and SASS, all bundled with Webpack.
 
+### Running app for development 
+1. Install (node js)[https://nodejs.org/en/download/]
+2. CD to project directory
+3. Insall packages with command: `npm i`
+4. Run the app with command: `npm start`
 
-## Task Requirements
-[*] In reference to the above link, please create an app from scratch with a new structure while maintaining the same visual appearance.
-[*] Implement the pagination functionality as the above link using the folder name (ID) to access HTML (Content folder) while maintaining the book chapters order.
-[*] Use the navigation folder (nav XHTML) to get the order of the chapters.
-[*] Use HTML & CSS to preserve the application’s visual appearance.
+### Building the app for production
+1. Install (node js)[https://nodejs.org/en/download/]
+2. CD to project directory
+3. Insall packages with command: `npm i`
+4. Run the app with command: `npm run build`
+5. Move the contents of `dist` folder to server, these static files are the filnal result of the app.
+
+## Libraries used
+- Webpack
+- Typescript
+- SASS
+- Prettier
+- ESLint
