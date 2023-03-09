@@ -1,10 +1,11 @@
 export interface BookSettings {
     bookId: string;
     pagesPerScreen: 1 | 2;
-    initwithPageIndex: number;
+    defaultPageIndex: number;
     allowedNavigationSteps: number;
     mobileBreakporint: number;
     isPanelOpened: boolean;
+    defaultFontSizeRatio: number;
     defaultColorTheme: ColorTheme;
     defaultFont: Font;
 }

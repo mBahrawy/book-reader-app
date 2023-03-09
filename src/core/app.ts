@@ -34,7 +34,18 @@ class App {
         // Prepare actions panel
         Layout.setActivePanelState(this.bookSettings.isPanelOpened);
 
+        // Prepare theme color
+        Layout.setColorTheme(this.bookSettings.defaultColorTheme);
+
+        // Prepare font family
+        Layout.setFont(this.bookSettings.defaultFont);
+
+        // Prepare font size ratio
+        Layout.setFontSizeRatio(this.bookSettings.defaultFontSizeRatio);
+
         // Prepare navigation
+        Navigation.currentPageIndex = this.bookSettings.defaultPageIndex;
+        Navigation.goToPage(this.bookSettings.defaultPageIndex + 1);
         Navigation.updateNavigation();
 
         // Adding events listeners

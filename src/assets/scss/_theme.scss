@@ -16,6 +16,10 @@ body {
     --dark-color: 255, 255, 255;
     --light-gray-color: 17, 17, 17;
     --light-color: 51, 51, 51;
+
+    img {
+      background-color: #fff;
+    }
   }
 
   &.warm-theme {

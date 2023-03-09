@@ -1,10 +1,12 @@
+import { setLocalStorage, LocalstorgeKeys } from "./../helpers/localstore";
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
 import Layout from "./layout";
+
 class Navigation {
     private constructor() {}
 
-    static currentPageIndex = 0;
+    static currentPageIndex: number;
     static pagesCount: number;
 
     static isNextEnabled(number = 1): boolean {
@@ -55,6 +57,9 @@ class Navigation {
         (previousPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled();
         (previousBulkPageButton as HTMLButtonElement).disabled = !this.isPreviousEnabled(bookSettings.allowedNavigationSteps);
 
+        // Save page index in local storag
+        setLocalStorage(LocalstorgeKeys.PAGE_INDEX, this.currentPageIndex);
+
         // Apply this asyncronsly
         setTimeout(() => {
             // Update progress bar
@@ -71,7 +76,7 @@ class Navigation {
         BookElements.book.scrollTo({
             top: 0,
             left: -this.getScrollX(),
-            behavior: "smooth"
+            behavior: "auto"
         });
         this.updateNavigation();
     }
@@ -82,7 +87,7 @@ class Navigation {
         BookElements.book.scrollTo({
             top: 0,
             left: -this.getScrollX(),
-            behavior: "smooth"
+            behavior: "auto"
         });
         this.updateNavigation();
     }
@@ -93,7 +98,7 @@ class Navigation {
         BookElements.book.scrollTo({
             top: 0,
             left: -this.getScrollX(number),
-            behavior: "smooth"
+            behavior: "auto"
         });
         this.updateNavigation();
     }

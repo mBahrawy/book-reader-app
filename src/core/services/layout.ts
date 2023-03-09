@@ -3,6 +3,7 @@ import MediaQuery from "./media-query";
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
 import Navigation from "./navigation";
+import { setLocalStorage, LocalstorgeKeys } from "../helpers/localstore";
 
 class Layout {
     static isActivePanel: boolean;
@@ -13,11 +14,6 @@ class Layout {
     static fontSizeRatio = 1;
     static selectedFont: Font;
     static fontsListOriginalParentHeight: number;
-
-    // private static _updateParagraphTools(): void {
-    //     const { paragraphTools } = BookElements;
-    //     this.isActiveParagraphTools ? paragraphTools.classList.remove("opened") : paragraphTools.classList.add("opened");
-    // }
 
     private static _updateFontFeedback(font: Font): void {
         this.selectedFont = font;
@@ -58,7 +54,6 @@ class Layout {
 
         mediaQuery.addListener(handleResize);
         handleResize(mediaQuery.matches);
-        // this._updateParagraphTools();
     }
 
     static setActivePanelState(state: boolean): void {
@@ -89,6 +84,8 @@ class Layout {
         resetFontButton.innerHTML = `${Math.ceil(this.fontSizeRatio * 100)}%`;
         this._updateButtonsDisablity();
         Navigation.updateNavigation();
+        // Save to local storage
+        setLocalStorage(LocalstorgeKeys.FONT_SIZE_RATIO, this.fontSizeRatio);
     }
     static resetFont(): void {
         const { book, resetFontButton } = BookElements;
@@ -97,6 +94,8 @@ class Layout {
         resetFontButton.innerHTML = `100%`;
         this._updateButtonsDisablity();
         Navigation.updateNavigation();
+        // Save to local storage
+        setLocalStorage(LocalstorgeKeys.FONT_SIZE_RATIO, this.fontSizeRatio);
     }
     static largerFont(): void {
         if (this.fontSizeRatio >= 1.28) return;
@@ -106,6 +105,8 @@ class Layout {
         resetFontButton.innerHTML = `${Math.ceil(this.fontSizeRatio * 100)}%`;
         this._updateButtonsDisablity();
         Navigation.updateNavigation();
+        // Save to local storage
+        setLocalStorage(LocalstorgeKeys.FONT_SIZE_RATIO, this.fontSizeRatio);
     }
 
     static setColorTheme(newTheme: ColorTheme): void {
@@ -115,6 +116,9 @@ class Layout {
             const themeValue: ColorTheme = button.getAttribute("data-value") as ColorTheme;
             newTheme === themeValue ? button.classList.add("selected") : button.classList.remove("selected");
         });
+
+        // Save to local storage
+        setLocalStorage(LocalstorgeKeys.COLOR_THEME, newTheme);
     }
 
     static setFont(newFont: Font): void {
@@ -127,6 +131,22 @@ class Layout {
             newFont === fontValue && this._updateFontFeedback(newFont);
         });
         Navigation.updateNavigation();
+
+        // Save to local storage
+        setLocalStorage(LocalstorgeKeys.FONT_FAMILY, newFont);
+    }
+
+    static setFontSizeRatio(ratio: number): void {
+        if (ratio < 0.65 || ratio > 1.35) return;
+        const { book, resetFontButton } = BookElements;
+        this.fontSizeRatio = ratio;
+        book.style.fontSize = `${this.fontSizeRatio}rem`;
+        resetFontButton.innerHTML = `${Math.ceil(this.fontSizeRatio * 100)}%`;
+        this._updateButtonsDisablity();
+        Navigation.updateNavigation();
+
+        // Save to local storage
+        setLocalStorage(LocalstorgeKeys.FONT_SIZE_RATIO, ratio);
     }
 
     static openFontsList(): void {
