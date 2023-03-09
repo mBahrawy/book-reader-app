@@ -1,4 +1,4 @@
-const baseUrl = `${location.protocol}//${location.host}`;
+const baseUrl = window.location.href.slice(0, -1);
 class DataProvider {
     id: string;
     chaptersNames: string[];
