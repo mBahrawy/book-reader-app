@@ -8,9 +8,16 @@ class Layout {
     static isActivePanel: boolean;
     static isActiveControls = false;
     static isActiveFontsList = false;
+    static isActiveParagraphTools = false;
+    static selectedParagraph: HTMLParagraphElement;
     static fontSizeRatio = 1;
     static selectedFont: Font;
     static fontsListOriginalParentHeight: number;
+
+    // private static _updateParagraphTools(): void {
+    //     const { paragraphTools } = BookElements;
+    //     this.isActiveParagraphTools ? paragraphTools.classList.remove("opened") : paragraphTools.classList.add("opened");
+    // }
 
     private static _updateFontFeedback(font: Font): void {
         this.selectedFont = font;
@@ -51,6 +58,7 @@ class Layout {
 
         mediaQuery.addListener(handleResize);
         handleResize(mediaQuery.matches);
+        // this._updateParagraphTools();
     }
 
     static setActivePanelState(state: boolean): void {
@@ -133,6 +141,48 @@ class Layout {
         const { fontsList } = BookElements;
         fontsList.parentElement.style.height = `${this.fontsListOriginalParentHeight}px`;
         fontsList.classList.remove("slide-up");
+    }
+
+    static showParagraphtools() {
+        BookElements.paragraphTools.classList.add("opened");
+        this.isActiveParagraphTools = true;
+    }
+    static hideParagraphtools() {
+        BookElements.paragraphTools.classList.remove("opened");
+        this.isActiveParagraphTools = false;
+    }
+
+    static handelParagraphtools(p: HTMLParagraphElement) {
+        const { top, left } = p.getBoundingClientRect();
+        const { paragraphTools, highlightButton, unhighlightButton } = BookElements;
+
+        paragraphTools.style.top = p.clientTop + `${top - 65}px`;
+        paragraphTools.style.left = p.clientLeft + `${left - 30 + p.offsetWidth / 2}px`;
+
+        this.selectedParagraph = p;
+
+        if (p.classList.contains("highlighted")) {
+            highlightButton.style.display = "none";
+            unhighlightButton.style.display = "block";
+        } else {
+            highlightButton.style.display = "block";
+            unhighlightButton.style.display = "none";
+        }
+    }
+
+    static highlightParagraph() {
+        this.selectedParagraph.classList.add("highlighted");
+        this.hideParagraphtools();
+    }
+
+    static unhighlightParagraph() {
+        this.selectedParagraph.classList.remove("highlighted");
+        this.hideParagraphtools();
+    }
+    static handelCopy() {
+        if (!this.selectedParagraph) return;
+        navigator.clipboard.writeText(this.selectedParagraph.innerText);
+        this.hideParagraphtools();
     }
 }
 

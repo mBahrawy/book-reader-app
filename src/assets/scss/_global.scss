@@ -13,3 +13,10 @@ html {
 .epigraph {
   background-color: var(--light-gray-color-rgb);
 }
+
+p {
+  @include transition(background-color 300ms ease-in-out);
+  &.highlighted {
+    background-color: rgba(var(--secondary-color), 0.68);
+  }
+}

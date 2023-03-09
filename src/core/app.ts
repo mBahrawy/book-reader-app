@@ -5,6 +5,7 @@ import "./../assets/scss/app.scss";
 import UserActions from "./services/user-actions";
 import Navigation from "./services/navigation";
 import Layout from "./services/layout";
+import ParagraphTools from "./services/paragraph-tools";
 
 class App {
     data!: DataProvider;
@@ -37,10 +38,15 @@ class App {
         Navigation.updateNavigation();
 
         // Adding events listeners
-        UserActions.addEventListerns();
+        UserActions.initEventListerns();
 
         // Handle app responsivness
         Layout.handelResponsivness();
+
+        // Prepare paragraph floating tools
+        const paragraphs = document.querySelectorAll("#book p");
+        const paragrapghTools: ParagraphTools = new ParagraphTools(paragraphs);
+        paragrapghTools.initTool();
     }
 }
 

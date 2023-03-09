@@ -25,6 +25,11 @@ class BookElements {
     static navigationProgressBar: HTMLElement = document.getElementById("navigation-progress-bar");
 
     static panel: HTMLElement = document.querySelector(".panel");
+
+    static paragraphTools: HTMLElement = document.getElementById("paragraph-tools");
+    static highlightButton: HTMLElement = document.getElementById("highlight-btn");
+    static unhighlightButton: HTMLElement = document.getElementById("unhighlight-btn");
+    static copyButton: HTMLElement = document.getElementById("copy-btn");
 }
 
 export default BookElements;

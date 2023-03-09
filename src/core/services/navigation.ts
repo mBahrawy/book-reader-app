@@ -1,5 +1,6 @@
 import BookElements from "./book-elements";
 import { bookSettings } from "../../index";
+import Layout from "./layout";
 class Navigation {
     private constructor() {}
 
@@ -44,6 +45,8 @@ class Navigation {
     }
 
     static updateNavigation(): void {
+        Layout.hideParagraphtools();
+
         // Check is nav buttons are active
         const { nextPageButton, previousPageButton, nextBulkPageButton, previousBulkPageButton } = BookElements;
 

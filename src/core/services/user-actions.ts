@@ -14,7 +14,7 @@ class UserActions {
         return false;
     }
 
-    static addEventListerns() {
+    static initEventListerns() {
         const {
             nextPageButton,
             previousPageButton,
@@ -28,11 +28,18 @@ class UserActions {
             openFontsListButton,
             closeFontsListButton,
             colorThemeButtons,
-            fontButtons
+            fontButtons,
+            highlightButton,
+            unhighlightButton,
+            copyButton
         } = BookElements;
 
         // Global events
         window.addEventListener("wheel", this.preventScroll, { passive: false });
+
+        window.addEventListener("resize", function () {
+            Layout.hideParagraphtools();
+        });
 
         window.addEventListener(
             "resize",
@@ -43,9 +50,19 @@ class UserActions {
         );
 
         // Book
-        book.addEventListener("click", function () {
+        book.addEventListener("click", function (event: MouseEvent) {
             const cellText = document.getSelection();
+
+            // Prevent action if the lement is p tag
+            Layout.hideParagraphtools();
+            if ((event.target as HTMLParagraphElement).tagName === "P") {
+                Layout.showParagraphtools();
+                return;
+            }
+
+            // Prevent action on select a text
             if (cellText.type === "Range") return;
+
             Layout.handelTogglePanel();
         });
 
@@ -80,14 +97,25 @@ class UserActions {
         openFontsListButton.addEventListener("click", function () {
             Layout.openFontsList();
         });
+
         closeFontsListButton.addEventListener("click", function () {
             Layout.closeFontsList();
+        });
+        // Paragraph tools button
+        highlightButton.addEventListener("click", function () {
+            Layout.highlightParagraph();
+        });
+        unhighlightButton.addEventListener("click", function () {
+            Layout.unhighlightParagraph();
+        });
+        copyButton.addEventListener("click", function () {
+            Layout.handelCopy();
         });
 
         // Select color theme
         colorThemeButtons.forEach((button) => {
             button.addEventListener("click", function () {
-                const theme: ColorTheme = button.getAttribute("data-value") as ColorTheme;
+                const theme: ColorTheme = this.getAttribute("data-value") as ColorTheme;
                 Layout.setColorTheme(theme);
             });
         });
@@ -95,8 +123,17 @@ class UserActions {
         // Select font family
         fontButtons.forEach((button) => {
             button.addEventListener("click", function () {
-                const font: Font = button.getAttribute("data-value") as Font;
+                const font: Font = this.getAttribute("data-value") as Font;
                 Layout.setFont(font);
+            });
+        });
+    }
+
+    // Add event listers on all paragraphs
+    static initParagraphsEventListener(bookParagraphs: NodeListOf<Element>): void {
+        bookParagraphs.forEach((p) => {
+            p.addEventListener("click", function () {
+                Layout.handelParagraphtools(this);
             });
         });
     }
