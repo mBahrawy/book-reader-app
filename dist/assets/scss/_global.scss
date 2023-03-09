@@ -1,0 +1,22 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  height: 100%;
+}
+
+.blockquote,
+.epigraph {
+  background-color: var(--light-gray-color-rgb);
+}
+
+p {
+  @include transition(background-color 300ms ease-in-out);
+  &.highlighted {
+    background-color: rgba(var(--secondary-color), 0.68);
+  }
+}
